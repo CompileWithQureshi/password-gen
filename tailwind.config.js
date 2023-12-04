@@ -9,7 +9,7 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'back': "url('./background.jpg')",
+        'back': "url('/background.jpg')",
       }
     },
   },
