@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+import keepPreset from "keep-react/src/keep-preset.js";
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -5,7 +7,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'back': "url('./background.jpg')",
+      }
+    },
   },
-  plugins: [],
+  plugins: [keepPreset],
 }
