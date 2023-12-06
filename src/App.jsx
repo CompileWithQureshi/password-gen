@@ -1,13 +1,22 @@
 import { useState, useCallback, useEffect } from "react";
 import Toggelbutton from "./toggelbutton";
 import { IoIosRefresh } from "react-icons/io";
+import { useRef } from "react";
+import { toast } from "react-toastify";
+import copy from "copy-to-clipboard";
+import { FaCopy } from "react-icons/fa";
+
+// import useDarkMode from "use-dark-mode";
 
 const App = () => {
+  const ref = useRef();
   const [password, setPassword] = useState("");
   const [num, setNum] = useState(false);
   const [small, setSmall] = useState(false);
   const [Care, seetCare] = useState(false);
   const [length, setLength] = useState(5);
+  const [theme, setTheme] = useState("dark");
+
   const handelsubmit = useCallback(() => {
     let pass = "";
     let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -27,13 +36,33 @@ const App = () => {
     handelsubmit();
   }, [length, num, Care, small, setPassword]);
 
-  const handelClick = () => {
-    console.log(`toggel`);
+  const handeltoggel = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+    console.log(`this dark toggel`);
+  };
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
+  const copyToClipboard = () => {
+    // Text from the html element
+    let copyText = ref.current.value;
+    // Adding text value to clipboard using copy function
+    let isCopy = copy(copyText);
+
+    //Dispalying notification
+    if (isCopy) {
+      toast.info(password);
+    }
   };
 
   return (
-    <main className=" bg-slate-700 grid place-content-center border-2 gap-2 h-screen  bg-[url('/background.jpg')] bg-no-repeat ">
-      <div className="  px-10 py-5 bg-slate-300  rounded-xl bg-opacity-60 backdrop-filter backdrop-blur-lg">
+    <main className=" bg-slate-700 grid  place-content-center border-2 gap-2 h-screen  bg-[url('/background.jpg')] bg-no-repeat ">
+      <div className="  px-10 py-5 bg-slate-300  rounded-xl bg-opacity-60 backdrop-filter backdrop-blur-lg dark:bg-[#d8d84b8b] dark:text-purple ">
         <div className="flex justify-between  gap-3  items-center w-full p-2 mb-10 ">
           <input
             readOnly
@@ -42,9 +71,10 @@ const App = () => {
             placeholder="password"
             className=" m-2 p-2 rounded-md"
             defaultChecked={password}
+            ref={ref}
           />
           <br />
-          <Toggelbutton toggel={handelClick} />
+          <Toggelbutton onClick={handeltoggel} />
         </div>
         {/* input-button starts here */}
         <div className="  r h-fit outline-dotted p-1  rounded-md gap-3 m-2 ">
@@ -99,7 +129,9 @@ const App = () => {
           >
             <IoIosRefresh className=" w-10 h-5" />
           </button>
-          <button className="border-2  rounded-lg m-2 p-1">copy</button>
+          <button className="  rounded-lg m-2 p-1" onClick={copyToClipboard}>
+            <FaCopy />
+          </button>
         </div>
       </div>
     </main>

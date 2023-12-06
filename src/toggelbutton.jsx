@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import "./App.css";
 
-function Toggelbutton({ toggel }) {
+function Toggelbutton({ onClick }) {
   return (
     <div>
       <label htmlFor="theme" className="theme">
@@ -14,7 +14,7 @@ function Toggelbutton({ toggel }) {
             // role="switch?"
             name="theme"
             value="dark"
-            onClick={() => toggel()}
+            onClick={() => onClick()}
           />
           <span className="theme__fill"></span>
           <span className="theme__icon">

@@ -100,8 +100,11 @@
 }
 
 .theme__toggle {
-  background-color: hsl(48, 90%, 85%);
+  background-color: #82822ae2;
   border-radius: 25% / 50%;
+  /* border: 1px solid black; */
+  outline: black 1px;
+  cursor: pointer;
   box-shadow: 0 0 0 0.125em var(--primaryT);
   padding: 0.25em;
   width: 6em;
