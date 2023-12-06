@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-import keepPreset from "keep-react/src/keep-preset.js";
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -13,5 +12,5 @@ export default {
       }
     },
   },
-  plugins: [keepPreset],
+  plugins: [],
 }
