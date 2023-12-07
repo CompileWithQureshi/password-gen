@@ -85,7 +85,11 @@ const App = () => {
             value={length}
             id=""
             className="w-40"
-            onChange={(e) => setLength(e.target.value)}
+            onChange={(e) => {
+              e.preventDefault();
+
+              setLength(e.target.value);
+            }}
           />
           <label htmlFor="Range">range</label>
           <br />

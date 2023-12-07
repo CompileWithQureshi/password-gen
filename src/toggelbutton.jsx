@@ -14,9 +14,12 @@ function Toggelbutton({ onClick }) {
             // role="switch?"
             name="theme"
             value="dark"
-            onClick={() => onClick()}
+            onClick={(e) => {
+              console.log(e.isPropagationStopped());
+
+              onClick();
+            }}
           />
-          <span className="theme__fill"></span>
           <span className="theme__icon">
             <span className="theme__icon-part"></span>
             <span className="theme__icon-part"></span>
